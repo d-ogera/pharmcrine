@@ -1,0 +1,178 @@
+{% extends 'base.html'%}
+{% block page_title %}
+<h5>All Patients</h5>
+{% endblock page_title %}
+{% block main_content %}
+{% load static %}
+
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/fontawesome/css/all.min.css' %}">
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7_3c7yrPY5gWKW8R50KETpRXUNH7BdCyxwFsAMEFBrzI_pe-cb-D-qJ_MFwDL8hdQ0B8&usqp=CAU');
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: scroll;
+			background-size: cover;
+			color: #20576b; /* Secondary color */
+		}
+
+		.auth-box {
+			background: rgba(255, 255, 255, 0.95);
+			border-radius: 10px;
+			padding: 20px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+		}
+
+		.input-group {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			border: 1px solid #ff7a59; /* Main color */
+			background: none;
+			padding: 12px 20px;
+			width: 100%;
+			border-radius: 24px;
+			transition: 0.25s;
+			color: #000;
+			outline: none;
+		}
+
+		.input-group-text {
+			background-color: #ff7a59; /* Main color */
+			border-color: #ff7a59;
+			color: #fff;
+			border-radius: 24px 0 0 24px;
+		}
+
+		.profile-header2 {
+			background: url('https://jobs.newscientist.com/getasset/0f3de168-cdc2-410a-be98-ff892b0f6dab/');
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			color: #fff;
+		}
+
+		.profile-header2::after {
+			background: rgba(32, 87, 107, 0.9); /* Secondary color */
+		}
+
+		button[type="submit"] {
+			background-color: #ff7a59; /* Main color */
+			border: 2px solid #ff7a59;
+			color: #fff;
+			padding: 14px 40px;
+			border-radius: 24px;
+			transition: 0.25s;
+			cursor: pointer;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #20576b; /* Secondary color */
+			border-color: #20576b;
+		}
+
+		.alert-danger {
+			background-color: rgba(255, 122, 89, 0.2); /* Main color background with transparency */
+			color: #ff7a59; /* Main color */
+		}
+
+		.alert-success {
+			background-color: rgba(32, 87, 107, 0.2); /* Secondary color background with transparency */
+			color: #20576b; /* Secondary color */
+		}
+
+		.text-muted,
+		.text-secondary {
+			color: #20576b !important; /* Secondary color */
+		}
+
+		.card {
+			background: rgba(255, 255, 255, 0.85);
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			text-align: center;
+		}
+
+		.custom-checkbox .custom-control-label::before {
+			background-color: #20576b; /* Secondary color */
+		}
+
+		a {
+			color: #ff7a59; /* Main color for links */
+		}
+
+		a:hover {
+			color: #20576b; /* Secondary color for hovered links */
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card auth-box">
+					<div class="text-center">
+						<img src="{% static 'images/logo.png' %}" width="200" height="auto" alt="">
+						<h3 class="mb-4 fw-300 text-dark">Welcome back</h3>
+					</div>
+
+					{% if messages %}
+						<div class="form-group">
+							{% for message in messages %}
+								<div class="alert alert-{{ message.tags }}">
+									<strong>{{ message.tags|title }}!</strong> {{ message }}
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					<form method="POST">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="username" class="text-muted">Username</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" class="form-control" name="username" placeholder="Username">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="text-muted">Password</label>
+							<div class="input-group mb-4">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-lock"></i></span>
+								</div>
+								<input type="password" class="form-control" name="password" placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group text-right">
+							<a href="{% url 'reset_password' %}" class="text-secondary">Forgot password?</a>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Login</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+{% endblock main_content %}

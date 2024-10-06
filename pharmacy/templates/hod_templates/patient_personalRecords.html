@@ -1,0 +1,58 @@
+{% extends 'hod_templates/base_template.html' %}
+{% block main_content %}
+<div class="content">
+    <div class="row pt">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Patient Image
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <img src="{{patient.profile_pic.url}}" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Patient's Information
+                </div>
+                <div class="card-body">
+                    <table>
+
+                        <tr>
+                            <td>First Name: {{patient.admin.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Name: {{patient.admin.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email: {{ patient.admin.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Age: {{ patient.age }}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender: {{ patient.gender }}</td>
+                        </tr>
+                        <tr>
+                            <td>Tel: {{ patient.phone_number }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Patient's Medical Info
+                </div>
+                <div class="card-body">
+                    <h6>Joined: </h6>
+                    <h6>Last Login: {{patient.admin.last_login}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

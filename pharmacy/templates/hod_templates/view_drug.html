@@ -1,0 +1,29 @@
+{% extends 'hod_templates/base_template.html' %}
+{% load static %}
+
+{% block page_title %}
+<h4 style="color: #20576b;">View drug</h4>
+{% endblock page_title %}
+
+{% block main_content %}
+<div class="content">
+    <div class="container">
+        <div class="col-md-4 mt-3">
+            <div class="card" style="background-color: #e0eafc; border-color: #20576b;">
+                <div class="pid-box-1 d-flex justify-content-center" data-pid-imprintid="8011">
+                    <img src="{{ stocks.drug_pic.url }}" width="343" height="270" alt="Drug Image" class="img-fluid">
+                </div>
+                <div class="pid-details pt-4">
+                    <ul class="list-unstyled">
+                        <li><b>Drug:</b> <a href="#" class="text-primary">{{ stocks.drug_name }}</a></li>
+                        <li><b>Strength:</b> {{ stocks.drug_strength }}</li>
+                        <li><b>Pill Imprint:</b> <a href="#" class="text-primary">{{ stocks.drug_imprint }}</a></li>
+                        <li><b>Color:</b> {{ stocks.drug_color }}</li>
+                        <li><b>Shape:</b> {{ stocks.drug_shape }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

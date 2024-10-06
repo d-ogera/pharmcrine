@@ -1,0 +1,18 @@
+{% extends 'hod_templates/base_template.html' %}
+
+{% block page_title %}
+{% endblock %}
+
+{% block main_content %}
+<div class="small-container card p-4 ml-5" style="width: 600px;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <legend class="text-primary" style="color: #20576b;">Confirm Deletion</legend>
+        <h2 class="mb-4">Are you sure you want to delete?</h2>
+        <div class="d-flex justify-content-start">
+            <button type="submit" class="btn btn-danger mr-2">Yes, Delete</button>
+            <a href="./" class="btn btn-outline-secondary">No</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

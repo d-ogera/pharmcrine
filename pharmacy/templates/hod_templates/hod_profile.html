@@ -1,0 +1,102 @@
+{% extends 'hod_templates/base_template.html' %}
+
+{% block main_content %}
+<div class="content">
+    <div class="container-fluid mb-4">
+        <div class="row">
+            <div class="col-12 panel-header-oly">
+                <div class="profile-header d-flex align-items-center position-relative rounded overflow-hidden" style="background-color: #20576b;">
+                    <div class="position-absolute l-0 t-0 r-0 b-0 bs-c bp-c o-10" style="background: url(/static/images/profile-bg.jpg); opacity: 0.1;"></div>
+                    <div class="position-relative d-flex flex-wrap w-100">
+                        <div class="flex-1 d-flex align-items-center px-4 my-3 w-100 w-lg-auto moo">
+                            <div class="pr-4">
+                                <img class="profile-avatar rounded-circle" src="{{ request.user.adminhod.profile_pic.url }}" alt="Avatar" style="width: 100px; height: 100px;">
+                            </div>
+                            <div class="pro-info text-white">
+                                <h4 class="mb-1 text-nowrap">{{ user.first_name }} {{ user.last_name }}</h4>
+                                <span>Hospital Admin</span>
+                                <div class="d-flex mt-2">
+                                    <span class="small text-uppercase">Email: <span class="text-lowercase">{{ user.email }}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mx-2">
+        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #20576b; color: white;">
+            <span>About</span>
+            <a href="{% url 'edit-admin' %}" class="btn btn-sm btn-light">
+                <i class="fas fa-edit"></i> Update profile
+            </a>
+        </div>
+
+        <div class="card-block">
+            <div class="view-info">
+                <div class="row">
+                    <div class="col-lg-12 pb-5">
+                        <div class="general-info">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Full Name</th>
+                                                    <td>{{ user.first_name }} {{ admin.last_name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Gender</th>
+                                                    <td>Male</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Birth Date</th>
+                                                    <td>October 25th, 1999</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="row">Location</th>
+                                                    <td>{{ user.address }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Email</th>
+                                                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Mobile Number</th>
+                                                    <td>{{ user.mobile }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">X</th>
+                                                    <td><a href="#" class="text-primary">X Link</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Skype</th>
+                                                    <td><a href="#" class="text-primary">Skype Link</a></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

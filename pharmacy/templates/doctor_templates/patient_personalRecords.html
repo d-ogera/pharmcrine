@@ -1,0 +1,55 @@
+{% extends 'doctor_templates/base_template.html' %}
+
+{% block link %}
+<li class="breadcrumb-item active"><a href="{% url 'manage_patient_doctor' %}">All Patients</a></li>
+<li class="breadcrumb-item active">Patient</li>
+{% endblock link %}
+
+{% block main_content %}
+<div class="content">
+    <div class="row pt">
+        <div class="col-lg-3">
+            <div class="card" style="border: 1px solid #20576b;">
+                <div class="card-header" style="background-color: #ff7a59; color: white;">
+                    <i class="fa fa-align-justify"></i> Patient Image
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <img src="{{ patient.profile_pic.url }}" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card" style="border: 1px solid #20576b;">
+                <div class="card-header" style="background-color: #ff7a59; color: white;">
+                    <i class="fa fa-align-justify"></i> Patient's Information
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>Full Name: {{ patient.first_name }} {{ patient.last_name }}</li>
+                        <li>Dob: {{ patient.dob }}</li>
+                        <li>Email: {{ patient.admin.email }}</li>
+                        <li>Age: {{ patient.age }}</li>
+                        <li>Gender: {{ patient.gender }}</li>
+                        <li>Address: {{ patient.adresss }}</li>
+                        <li>Tel: {{ patient.mobile }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card" style="border: 1px solid #20576b;">
+                <div class="card-header" style="background-color: #ff7a59; color: white;">
+                    <i class="fa fa-align-justify"></i> Patient's Medical Info
+                </div>
+                <div class="card-body">
+                    <h6>Doctor:</h6>
+                    <h6>Description: {{ prescrip.patient.description }}</h6>
+                    <h6>Prescription: {{ prescrip.prescribe }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'hod_templates/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+<h5 class="text-primary" style="color: #20576b;">Edit drugs info</h5>
+{% endblock page_title %}
+
+{% block main_content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="border-color: #20576b;">
+                <div class="card-header text-white" style="background-color: #20576b;">
+                    <h3 class="card-title">Edit drug</h3>
+                </div>
+
+                <form method="POST" class="px-3 py-2" style="font-size: 14px;">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                        <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible mt-1">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <strong>Oh snap!</strong> {{ message }}
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible mt-1">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <strong>Well done!</strong> {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="card-footer">
+                        <input type="submit" class="btn text-white" style="background-color: #ff7a59;" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

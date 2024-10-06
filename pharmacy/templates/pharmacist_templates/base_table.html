@@ -1,0 +1,26 @@
+<table class="table table-bordered table-hover dataTable table5" id="plist">
+    <thead>
+
+        <tr>
+            <th>No</th>
+            <th>Drug</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Date Stocked</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for stoc in drugs %}
+        <tr class="hov" data-id={{stoc.id}} id="japon">
+            <td>{{stoc.id}}</td>
+            <td>{{stoc.drug_name}}</td>
+            <td>{{stoc.category}}</td>
+            <td>{{stoc.quantity}}</td>
+
+            <td>{{stoc.last_updated |date:"F d, Y"}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

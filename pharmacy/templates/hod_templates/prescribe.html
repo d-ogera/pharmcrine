@@ -1,0 +1,56 @@
+{% extends 'hod_templates/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+<h5>Add Prescriptions</h5>
+{% endblock page_title %}
+
+{% block main_content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="border-color: #20576b;">
+                <div class="card-header bg-primary" style="background-color: #20576b;">
+                    <h3 class="card-title text-white">Add Prescriptions</h3>
+                </div>
+
+                <form method="POST" class="px-3 py-2" style="font-size: 14px;">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                    <div class="form-group">
+                        <div class="col-12">
+                            {% for message in messages %}
+                            {% if message.tags == "error" %}
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {% elif message.tags == "success" %}
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn text-white" style="background-color: #ff7a59;">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

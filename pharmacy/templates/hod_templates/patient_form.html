@@ -1,0 +1,62 @@
+{% extends 'hod_templates/base_template.html' %}
+{% load crispy_forms_tags %}
+{% block page_title %}
+<h5>Add Patient</h5>
+{% endblock page_title %}
+
+{% block main_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card card-info">
+                    <div class="card-header bg-20576b text-white">
+                        <h3 class="card-title">Add Patient</h3>
+                    </div>
+
+                    <form role="form" method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if messages %}
+                        <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                <div class="col-sm-12">
+                                    {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show text-left font-weight-light mt-1" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fa fa-times danger"></i></span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
+                                        <strong class="font-weight-semibold">Oh snap!</strong> {{ message }}
+                                    </div>
+                                    {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show text-left font-weight-light mt-1" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fa fa-times greencross"></i></span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                        <i class="start-icon far fa-check-circle faa-tada animated"></i>
+                                        <strong class="font-weight-semibold">Well done!</strong> {{ message }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            {{ form|crispy }}
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" style="background-color: #ff7a59; border-color: #ff7a59;">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

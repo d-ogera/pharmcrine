@@ -1,0 +1,64 @@
+{% extends 'doctor_templates/base_template.html' %} 
+{% block page_title %}
+<h5>All Patients</h5>
+{% endblock page_title %} 
+{% block link %}
+<li class="breadcrumb-item active">All Patients</li>
+{% endblock link %} 
+{% block main_content %}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="border: 1px solid #20576b;">
+                <div class="card-header" style="background-color: #ff7a59; color: white;">
+                    <span>Patients Records</span>
+                    <div class="card-tools d-flex">
+                        <form role="form" method="POST" action="" enctype="multipart/form-data" class="mr-4 mt-1">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="search" class="form-control float-right" placeholder="Search" style="border-color: #20576b;">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn" style="background-color: #20576b; color: white;"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover dataTable">
+                    <thead>
+                        <tr style="background-color: #20576b; color: white;">
+                            <th>No</th>
+                            <th></th>
+                            <th>UserName</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patients %}
+                        <tr class="hov">
+                            <td>{{ forloop.counter }}</td>
+                            <td><img src="{{ patient.profile_pic.url }}" width="35" height="35" alt=""></td>
+                            <td>{{ patient.admin.username }}</td>
+                            <td>{{ patient.first_name }}</td>
+                            <td>{{ patient.last_name }}</td>
+                            <td>{{ patient.gender }}</td>
+                            <td>{{ patient.admin.email }}</td>
+                            <td>{{ patient.phone_number }}</td>
+                            <td>
+                                <a href="{% url 'doctor_prescribe2' patient.id %}" class="btn btn-sm" style="background-color: #ff7a59; color: white;">Prescribe</a>
+                                <a href="{% url 'patient_record_doctor' patient.id %}" class="btn btn-sm" style="background-color: #20576b; color: white;">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
